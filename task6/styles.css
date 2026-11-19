@@ -1,0 +1,66 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-page: #ffffff;
+    --item-bg: #f8d442;
+    --item-color: #ffffff;
+    --gap: 8px;
+    --item-height: 56px;
+}
+
+body {
+    background-color: var(--bg-page);
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.tree-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--gap);
+    padding: var(--gap);
+    counter-reset: block-number;
+}
+
+.tree-item {
+    background-color: var(--item-bg);
+    color: var(--item-color);
+    height: var(--item-height);
+    display: grid;
+    place-items: center;
+    font-size: 1.75rem;
+    counter-increment: block-number;
+}
+
+.tree-item::before {
+    content: counter(block-number);
+}
+
+.tree-item:nth-child(1) {
+    grid-column: span 12;
+}
+
+.tree-item:nth-child(n + 2):nth-child(-n + 3) {
+    grid-column: span 6;
+}
+
+.tree-item:nth-child(n + 4):nth-child(-n + 6) {
+    grid-column: span 4;
+}
+
+.tree-item:nth-child(n + 7):nth-child(-n + 10) {
+    grid-column: span 3;
+}
+
+.tree-item:nth-child(n + 11):nth-child(-n + 16) {
+    grid-column: span 2;
+}
+
+.tree-item:nth-child(n + 17) {
+    grid-column: span 1;
+}
